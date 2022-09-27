@@ -13,6 +13,16 @@ pipeline {
                     sh 'docker run --name mysql1 -d -p 3333:3306 -e MYSQL_ROOT_PASSWORD=root mysql:8'                    
                 }
             }
-        }	    
+        }
+        stage('Push Image') {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker_credential') {
+                        docker.image("susanto0308/mysql1:${TAG}").push()
+                        docker.image("susanto0308/mysql1:${TAG}").push("latest")
+                    }
+                }
+            }
+        }
     }
 }
