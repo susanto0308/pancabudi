@@ -8,6 +8,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
+                    sh 'docker container rm mysql1 | true' 
                     sh 'docker run --name mysql1 -d -p 3333:3306 -e MYSQL_ROOT_PASSWORD=root mysql:8'                    
                 }
             }
