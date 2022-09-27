@@ -5,6 +5,13 @@ pipeline {
         TAG = "${DATE}.${BUILD_NUMBER}"
     }
     stages {
+       stage('Docker Build App') {
+            steps {
+                script {
+                    sh 'docker built -t Employee-App'                  
+                }
+            }
+        }
        stage('Docker Build Database') {
             steps {
                 script {
