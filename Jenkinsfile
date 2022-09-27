@@ -17,7 +17,7 @@ pipeline {
         stage('Push Image') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker_credential') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'Docker_Akses') {
                         docker.image("susanto0308/mysql1:${TAG}").push()
                         docker.image("susanto0308/mysql1:${TAG}").push("latest")
                     }
