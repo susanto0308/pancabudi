@@ -8,7 +8,7 @@ pipeline {
        stage('Docker Build App') {
             steps {
                 script {
-                    sh 'docker build -t employee-app:v1 .'                  
+                    sh 'docker build -t susanto0308/employee-app:${TAG} .'                  
                 }
             }
         }
@@ -25,8 +25,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'Docker_Akses') {
-                        docker.image("susanto0308/mysql:8").push()
-                        docker.image("susanto0308/mysql:8").push("latest")
+                        docker.image("susanto0308/employee-app:${TAG}").push()
+                        docker.image("susanto0308/employee-app:${TAG}").push("latest")
                     }
                 }
             }
