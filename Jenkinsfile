@@ -8,7 +8,7 @@ pipeline {
        stage('Docker Build App') {
             steps {
                 script {
-                    sh 'build docker -t employee-app'                  
+                    sh 'docker build image -t employee-app:v1 .'                  
                 }
             }
         }
