@@ -5,14 +5,7 @@ pipeline {
         TAG = "${DATE}.${BUILD_NUMBER}"
     }
     stages {
-        stage('Create Network') {
-            steps {
-                script {
-                    sh 'docker network create Docker-Jenkins'                    
-                }
-            }
-        }
-        stage('Docker Build Database') {
+       stage('Docker Build Database') {
             steps {
                 script {
                     sh 'docker container stop mysql1 | true' 
