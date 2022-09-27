@@ -8,7 +8,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    docker.build("vigneshsweekaran/hello-world:${TAG}")
+                    sh 'docker run --name mysql -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root --restart unless-stopped mysql:8'                    
                 }
             }
         }	    
