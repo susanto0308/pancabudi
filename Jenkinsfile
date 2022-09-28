@@ -10,8 +10,8 @@ pipeline {
             steps {
                 script {
                     sh 'docker build -t ${IMAGE_NAME} .' 
-                    sh 'docker container stop ${IMAGE_NAME} | true' 
-                    sh 'docker container rm ${IMAGE_NAME} | true' 
+                    sh 'docker container stop app_running | true' 
+                    sh 'docker container rm app_running | true' 
                     sh 'docker run --name app_running -d -p 8083:8081 ${IMAGE_NAME}'
                 }
             }
@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'Docker_Akses') {
-                        docker.image(${IMAGE_NAME}).push()
+                        docker.image("${IMAGE_NAME}").push()
                     }
                 }
             }
