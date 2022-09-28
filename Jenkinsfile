@@ -11,7 +11,7 @@ pipeline {
                 script {
                     sh 'docker build -t ${IMAGE_NAME} .'
                     sh 'docker container stop myapp | true' 
-                    sh 'docker container rm mmyapp | true' 
+                    sh 'docker container rm myapp | true' 
                     sh 'docker container create --name myapp -p 8082:80 ${IMAGE_NAME}'
                     sh 'docker container start ${IMAGE_NAME}'
                 }
