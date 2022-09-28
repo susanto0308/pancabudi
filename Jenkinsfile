@@ -12,7 +12,7 @@ pipeline {
                     sh 'docker build -t ${IMAGE_NAME} .' 
                     sh 'docker container stop app_running | true' 
                     sh 'docker container rm app_running | true' 
-                    sh 'docker run --name app_running -d -p 8083:8081 ${IMAGE_NAME}'
+                    sh 'docker container run --name app_running -d -p 8083:8081 ${IMAGE_NAME}'
                 }
             }
         }
