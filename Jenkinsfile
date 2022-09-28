@@ -3,7 +3,7 @@ pipeline {
     environment {
         DATE = new Date().format('yy.M')
         TAG = "${DATE}.${BUILD_NUMBER}"
-        IMAGE_NAME = susanto0308/employee-app:${TAG}
+        IMAGE_NAME = "susanto0308/employee-app:${TAG}"
     }
     stages {
        stage('Docker Build App') {
