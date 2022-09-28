@@ -26,7 +26,6 @@ pipeline {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'Docker_Akses') {
                         docker.image("susanto0308/employee-app:${TAG}").push()
-                        docker.image("susanto0308/employee-app:${TAG}").push("latest")
                     }
                 }
             }
