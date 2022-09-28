@@ -3,12 +3,16 @@ pipeline {
     environment {
         DATE = new Date().format('yy.M')
         TAG = "${DATE}.${BUILD_NUMBER}"
+        IMAGE_NAME = susanto0308/employee-app:${TAG}
     }
     stages {
        stage('Docker Build App') {
             steps {
                 script {
-                    sh 'docker build -t susanto0308/employee-app:${TAG} .'                  
+                    sh 'docker build -t ${IMAGE_NAME} .' 
+                    sh 'docker container stop ${IMAGE_NAME} | true' 
+                    sh 'docker container rm ${IMAGE_NAME} | true' 
+                    sh 'docker run --name app_running -d -p 8083:8081 ${IMAGE_NAME}'
                 }
             }
         }
@@ -25,7 +29,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'Docker_Akses') {
-                        docker.image("susanto0308/employee-app:${TAG}").push()
+                        docker.image(${IMAGE_NAME}).push()
                     }
                 }
             }
