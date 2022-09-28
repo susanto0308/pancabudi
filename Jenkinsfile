@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     sh 'docker build -t ${IMAGE_NAME} .'
-                    sh 'docker container create --name myapp -d -p 8082:80 ${IMAGE_NAME}'
+                    sh 'docker container create --name myapp -p 8082:80 ${IMAGE_NAME}'
                     sh 'docker container start ${IMAGE_NAME}'
                 }
             }
