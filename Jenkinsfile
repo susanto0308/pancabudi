@@ -25,7 +25,14 @@ pipeline {
                 }
             }
         }
-        stage('Push Image') {
+       stage('Running App') {
+            steps {
+                script {
+                    sh 'docker container start ${IMAGE_NAME}'
+                }
+            }
+       }
+       stage('Push Image') {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com/', 'Docker_Akses') {
