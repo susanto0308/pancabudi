@@ -28,7 +28,7 @@ pipeline {
         stage('Push Image') {
             steps {
                 script {
-                    docker.withRegistry('https://hub.docker.com/', 'Docker_Akses') {
+                    docker.withRegistry('https://registry.hub.docker.com/', 'Docker_Akses') {
                         docker.image("${IMAGE_NAME}").push()
                     }
                 }
